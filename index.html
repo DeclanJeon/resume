@@ -3,1835 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Declan - Software Engineer Resume</title>
+    <title>전형동(Declan) - Problem Solver & Software Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2563eb', 
+                        secondary: '#475569', 
+                        bgbase: '#f8fafc',   
+                        surface: '#ffffff',  
+                        accent: '#0ea5e9',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025)',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: #f5f5f5;
-            padding: 0;
-            color: #333;
-        }
-
-        .resume-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
-            padding: 60px 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(44,44,44,0.03) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .header-title {
-            font-size: 5rem;
-            font-weight: 900;
-            letter-spacing: 0.05em;
-            color: #2c2c2c;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header-icon {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .starburst {
-            width: 100%;
-            height: 100%;
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            min-height: calc(100vh - 240px);
-        }
-
-        .sidebar {
-            background: linear-gradient(180deg, #f8f8f8 0%, #fafafa 100%);
-            padding: 60px 50px;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.02);
-        }
-
-        .profile-section {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .profile-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            margin-bottom: 25px;
-            object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .profile-image:hover {
-            transform: scale(1.05);
-        }
-
-        .profile-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #1a1a1a;
-        }
-
-        .profile-title {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: #666;
-        }
-
-        .section {
-            margin-bottom: 50px;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 25px;
-            padding-bottom: 12px;
-            border-bottom: 3px solid #d0d0d0;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: #2c2c2c;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 18px;
-            font-size: 0.95rem;
-            transition: transform 0.2s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateX(5px);
-        }
-
-        .contact-icon {
-            width: 32px;
-            height: 32px;
-            margin-right: 12px;
-            background: linear-gradient(135deg, #2c2c2c 0%, #4a4a4a 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.75rem;
-            flex-shrink: 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-
-        .contact-icon svg {
-            width: 16px;
-            height: 16px;
-            fill: white;
-        }
-
-        .contact-item a {
-            color: #444;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .contact-item a:hover {
-            color: #2c2c2c;
-            text-decoration: underline;
-        }
-
-        .email-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #2c2c2c 0%, #4a4a4a 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .email-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-        }
-
-        .email-button svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-        }
-
-        .about-text {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: #444;
-            text-align: justify;
-        }
-
-        .skills-list {
-            list-style: none;
-        }
-
-        .skills-list li {
-            padding: 10px 0;
-            padding-left: 20px;
-            position: relative;
-            font-size: 0.95rem;
-            color: #444;
-            transition: color 0.2s ease;
-        }
-
-        .skills-list li:hover {
-            color: #2c2c2c;
-        }
-
-        .skills-list li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: #2c2c2c;
-            font-weight: bold;
-        }
-
-        .content-area {
-            padding: 60px 80px;
-        }
-
-        .content-section {
-            margin-bottom: 60px;
-        }
-
-        .content-section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 35px;
-            padding-bottom: 12px;
-            border-bottom: 3px solid #d0d0d0;
-            position: relative;
-        }
-
-        .content-section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: #2c2c2c;
-        }
-
-        .education-item,
-        .experience-item {
-            margin-bottom: 40px;
-        }
-
-        .item-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-        }
-
-        .item-subtitle {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .item-description {
-            list-style: none;
-            margin-left: 0;
-        }
-
-        .item-description li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-            font-size: 0.9rem;
-            color: #444;
-            line-height: 1.7;
-        }
-
-        .item-description li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #666;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .skills-chart {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .skill-item {
-            text-align: center;
-        }
-
-        .skill-circle {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 15px;
-            position: relative;
-        }
-
-        .circle-bg {
-            fill: none;
-            stroke: #e0e0e0;
-            stroke-width: 12;
-        }
-
-        .circle-progress {
-            fill: none;
-            stroke: #2c2c2c;
-            stroke-width: 12;
-            stroke-linecap: round;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-            transition: stroke-dashoffset 1s ease;
-        }
-
-        .circle-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2c2c2c;
-        }
-
-        .skill-label {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: #444;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
-            padding: 35px;
-            margin-bottom: 30px;
-            border-left: 4px solid #2c2c2c;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-        }
-
-        .project-header {
-            margin-bottom: 20px;
-        }
-
-        .project-org {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-        }
-
-        .project-period {
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 20px 0;
-        }
-
-        .tag {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: #444;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .tag:hover {
-            background: #2c2c2c;
-            color: white;
-            border-color: #2c2c2c;
-        }
-
-        .project-description {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 20px;
-        }
-
-        .badge-special {
-            background: linear-gradient(135deg, #2c2c2c 0%, #4a4a4a 100%);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 15px;
-            margin-right: 10px;
-            padding: 8px 16px;
-            background: #f0f0f0;
-            border-radius: 6px;
-            color: #2c2c2c;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .project-link:hover {
-            background: #2c2c2c;
-            color: white;
-            transform: translateX(5px);
-        }
-
-        .project-link svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .project-link.demo {
-            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
-            color: white;
-            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
-        }
-
-        .project-link.demo:hover {
-            background: linear-gradient(135deg, #357abd 0%, #2868a8 100%);
-            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
-        }
-
-        .media-gallery-section {
-            margin-top: 40px;
-            padding: 35px;
-            background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
-            border-radius: 12px;
-            border: 2px solid #e8e8e8;
-        }
-
-        .media-gallery-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .media-gallery-title::before {
-            content: '🎬';
-            font-size: 1.5rem;
-        }
-
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
-
-        .media-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #f0f0f0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .media-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-        }
-
-        .media-item-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            overflow: hidden;
-        }
-
-        .media-item img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .media-item-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-            padding: 20px;
-            color: white;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .media-item:hover .media-item-overlay {
-            transform: translateY(0);
-        }
-
-        .media-item-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .media-item-description {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-
-        .media-zoom-icon {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 36px;
-            height: 36px;
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .glass-nav {
             background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 2;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #1d4ed8 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .media-item:hover .media-zoom-icon {
-            opacity: 1;
+        .project-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        
+        /* Hover Video Effect */
+        .project-card:hover .static-thumb { opacity: 0; }
+        .project-card:hover .gif-play { opacity: 1; transform: scale(1.05); }
+
+        .tech-badge {
+            @apply px-2.5 py-1 rounded-md text-xs font-semibold border transition-colors;
         }
 
-        .media-zoom-icon svg {
-            width: 18px;
-            height: 18px;
-            fill: #2c2c2c;
+        .challenge-box {
+            @apply mt-4 p-4 bg-slate-50 rounded-lg border-l-4 border-amber-400 text-sm;
         }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            animation: zoomIn 0.3s ease;
-        }
-
-        @keyframes zoomIn {
-            from { 
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to { 
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .modal-content img {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        .modal-info {
-            position: absolute;
-            bottom: -80px;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .modal-info-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-        }
-
-        .modal-info-description {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10000;
-        }
-
-        .modal-close:hover {
-            background: white;
-            transform: rotate(90deg);
-        }
-
-        .modal-close::before,
-        .modal-close::after {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 3px;
-            background: #2c2c2c;
-            border-radius: 2px;
-        }
-
-        .modal-close::before {
-            transform: rotate(45deg);
-        }
-
-        .modal-close::after {
-            transform: rotate(-45deg);
-        }
-
-        .modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal-nav:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .modal-nav.prev {
-            left: 20px;
-        }
-
-        .modal-nav.next {
-            right: 20px;
-        }
-
-        .modal-nav svg {
-            width: 24px;
-            height: 24px;
-            fill: #2c2c2c;
-        }
-
-        .side-project-card {
-            background: #ffffff;
-            border: 2px solid #e8e8e8;
-            padding: 40px;
-            margin-bottom: 40px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .side-project-card:hover {
-            border-color: #2c2c2c;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-
-        .tech-highlight {
-            display: inline-block;
-            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #2c2c2c;
-            margin: 0 4px;
-        }
-
-        .story-section {
-            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
-            padding: 35px;
-            margin: 30px 0;
-            border-radius: 12px;
-            border-left: 4px solid #4a90e2;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-        }
-
-        .story-section h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .story-section h4::before {
-            content: '💡';
-            font-size: 1.5rem;
-        }
-
-        .story-content {
-            font-size: 0.95rem;
-            line-height: 1.9;
-            color: #444;
-            text-align: justify;
-        }
-
-        .story-content p {
-            margin-bottom: 15px;
-        }
-
-        .story-content strong {
-            color: #2c2c2c;
-            font-weight: 600;
-        }
-
-        .challenge-section {
-            background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
-            padding: 35px;
-            margin: 30px 0;
-            border-radius: 12px;
-            border-left: 4px solid #e74c3c;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-        }
-
-        .challenge-section h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .challenge-section h4::before {
-            content: '⚠️';
-            font-size: 1.5rem;
-        }
-
-        .challenge-item {
-            margin-bottom: 25px;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-        }
-
-        .challenge-item h5 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #e74c3c;
-            margin-bottom: 10px;
-        }
-
-        .challenge-item p {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        .challenge-item .solution {
-            padding-left: 20px;
-            border-left: 3px solid #27ae60;
-            margin-top: 10px;
-        }
-
-        .challenge-item .solution strong {
-            color: #27ae60;
-        }
-
-        .vision-section {
-            background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%);
-            padding: 35px;
-            margin: 30px 0;
-            border-radius: 12px;
-            border-left: 4px solid #3498db;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-        }
-
-        .vision-section h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .vision-section h4::before {
-            content: '🚀';
-            font-size: 1.5rem;
-        }
-
-        .vision-content {
-            font-size: 0.95rem;
-            line-height: 1.9;
-            color: #444;
-        }
-
-        .vision-content p {
-            margin-bottom: 15px;
-        }
-
-        .vision-list {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .vision-list li {
-            padding: 10px 0 10px 30px;
-            position: relative;
-            font-size: 0.9rem;
-            color: #444;
-            line-height: 1.7;
-        }
-
-        .vision-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #3498db;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .timeline {
-            position: relative;
-            padding: 30px 0;
-            margin: 30px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #4a90e2, #e74c3c, #27ae60, #3498db);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 60px;
-            margin-bottom: 30px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 11px;
-            top: 5px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: white;
-            border: 3px solid #4a90e2;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .timeline-item:nth-child(2) .timeline-dot {
-            border-color: #e74c3c;
-        }
-
-        .timeline-item:nth-child(3) .timeline-dot {
-            border-color: #27ae60;
-        }
-
-        .timeline-item:nth-child(4) .timeline-dot {
-            border-color: #3498db;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .timeline-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-        }
-
-        .timeline-text {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: #555;
-        }
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 25px 0;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2c2c2c;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: #666;
-            font-weight: 500;
-        }
-
-        @media print {
-            body {
-                background: white;
-            }
-            .resume-container {
-                box-shadow: none;
-            }
-        }
-
-        @media (max-width: 968px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .header {
-                padding: 40px;
-            }
-            
-            .header-title {
-                font-size: 3rem;
-            }
-            
-            .content-area,
-            .sidebar {
-                padding: 40px;
-            }
-
-            .media-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 10px;
-            }
-
-            .timeline-item {
-                padding-left: 50px;
-            }
-
-            .timeline-dot {
-                left: 1px;
-            }
-
-            .modal-nav {
-                width: 40px;
-                height: 40px;
-            }
-
-            .modal-nav svg {
-                width: 20px;
-                height: 20px;
-            }
-
-            .modal-info {
-                position: relative;
-                bottom: auto;
-                margin-top: 20px;
-            }
+        .solution-box {
+            @apply mt-2 p-4 bg-blue-50/50 rounded-lg border-l-4 border-primary text-sm;
         }
     </style>
 </head>
-<body>
-    <div class="resume-container">
-        <header class="header">
-            <h1 class="header-title">RESUME</h1>
-            <div class="header-icon">
-                <svg class="starburst" viewBox="0 0 200 200">
-                    <g transform="translate(100,100)">
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(0)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(15)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(30)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(45)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(60)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(75)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(90)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(105)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(120)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(135)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(150)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(165)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(180)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(195)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(210)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(225)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(240)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(255)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(270)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(285)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(300)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(315)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(330)"/>
-                        <line x1="0" y1="0" x2="0" y2="-90" stroke="#2c2c2c" stroke-width="2" transform="rotate(345)"/>
-                    </g>
-                </svg>
-            </div>
-        </header>
+<body class="bg-bgbase text-slate-800 font-sans antialiased selection:bg-primary/20 selection:text-primary">
 
-        <div class="main-content">
-            <aside class="sidebar">
-                <div class="profile-section">
-                    <img class="profile-image" src="./profile.png" alt="Declan Profile">
-                    <h2 class="profile-name">Declan</h2>
-                    <p class="profile-title">소프트웨어 엔지니어</p>
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="text-xl font-extrabold text-slate-900 tracking-tight hover:text-primary transition-colors">
+                Declan<span class="text-primary">.Dev</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
+                <a href="#profile" class="hover:text-primary transition-colors">About</a>
+                <a href="#projects" class="hover:text-primary transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-primary transition-colors">Experience</a>
+            </div>
+            <a href="mailto:syas0301@gmail.com" class="px-5 py-2 bg-slate-900 text-white rounded-full text-sm font-bold hover:bg-primary transition-all shadow-lg shadow-slate-900/20 transform hover:-translate-y-0.5">
+                Contact Me
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-24 px-6 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50 pointer-events-none animate-float"></div>
+        <div class="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-96 h-96 bg-cyan-100 rounded-full blur-3xl opacity-50 pointer-events-none" style="animation-delay: -2s;"></div>
+
+        <div class="max-w-5xl mx-auto text-center animate-fade-in-up relative z-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 leading-tight tracking-tight">
+                Solving Problems with <br>
+                <span class="text-gradient">Technology & Logic</span>
+            </h1>
+            <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+                단순한 구현을 넘어 <strong>사용자의 문제를 기술적으로 해결</strong>하는 것에 집중합니다.<br>
+                WebRTC, Browser Core, AI Integration을 통해 실질적인 가치를 만듭니다.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#projects" class="px-8 py-4 bg-primary text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 transform hover:-translate-y-1">
+                    프로젝트 보기 <i class="fas fa-arrow-down"></i>
+                </a>
+                <a href="https://github.com/declanjeon" target="_blank" class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm flex items-center justify-center gap-2 transform hover:-translate-y-1">
+                    <i class="fab fa-github text-xl"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="profile" class="py-20 px-6 bg-bgbase">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-surface rounded-3xl p-8 md:p-12 shadow-soft flex flex-col md:flex-row gap-12 items-center border border-slate-100">
+                <div class="w-full md:w-1/3 flex justify-center relative group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                    <div class="relative w-64 h-64 md:w-full md:max-w-sm aspect-square rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl rotate-2 group-hover:rotate-0 transition-transform duration-500">
+                        <img src="./media/profile.png" alt="Jeon Hyeong-dong" class="w-full h-full object-cover">
+                    </div>
                 </div>
 
-                <section class="section">
-                    <h3 class="section-title">Contact</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <span>010-4307-1817</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉</div>
-                        <a href="mailto:syas0301@gmail.com">syas0301@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                        </div>
-                        <a href="https://github.com/declanjeon" target="_blank">github.com/declanjeon</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 3c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7zm0 2c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5z"/>
-                            </svg>
-                        </div>
-                        <a href="https://acstory.tistory.com" target="_blank">acstory.tistory.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.598.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142l-.126 1.974a11.902 11.902 0 0 0-2.588-.121c-1.156.067-2.093.39-2.787.96-.65.534-.972 1.177-.934 1.861.04.739.434 1.32 1.175 1.728.627.345 1.458.515 2.472.504 1.177-.03 2.087-.472 2.708-1.314.57-.772.861-1.83.866-3.146.003-.07.005-.14.005-.21V9.563c0-.963.36-1.557 1.157-1.557.678 0 1.027.511 1.027 1.557v.784l.006.28c.04 1.424.13 2.742.267 3.93.404 3.5.567 4.985 1.816 6.348C17.09 22.587 15.128 23.97 12.186 24z"/>
-                            </svg>
-                        </div>
-                        <a href="https://www.threads.com/@pons22222?hl=ko" target="_blank">@pons22222</a>
-                    </div>
-
-                    <a href="mailto:syas0301@gmail.com?subject=이력서를 보고 연락드립니다&body=안녕하세요 Declan님,%0D%0A%0D%0A귀하의 이력서를 보고 연락드립니다.%0D%0A%0D%0A" class="email-button">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        이메일로 연락하기
-                    </a>
-                </section>
-
-                <section class="section">
-                    <h3 class="section-title">About Me</h3>
-                    <p class="about-text">
-                        WebRTC 기반 실시간 P2P 통신 시스템 설계 및 구현 전문성을 갖추고 있으며, 제품 기획부터 배포까지 전체 개발 라이프사이클을 주도할 수 있습니다. 기술을 통해 사회적 가치를 창출하는 것에 관심이 많습니다.
-                    </p>
-                </section>
-
-                <section class="section">
-                    <h3 class="section-title">핵심 역량</h3>
-                    <ul class="skills-list">
-                        <li>실시간 통신 전문 (WebRTC)</li>
-                        <li>풀스택 개발</li>
-                        <li>P2P 네트워크 아키텍처</li>
-                        <li>시스템 설계 및 최적화</li>
-                        <li>프로젝트 전체 라이프사이클 관리</li>
-                    </ul>
-                </section>
-
-                <section class="section">
-                    <h3 class="section-title">기술 스택</h3>
-                    <ul class="skills-list">
-                        <li>React, Next.js</li>
-                        <li>Node.js, Express</li>
-                        <li>JavaScript, TypeScript</li>
-                        <li>MySQL, MariaDB</li>
-                        <li>WebRTC, WebSocket</li>
-                        <li>Docker, Nginx</li>
-                        <li>HTML5, CSS3</li>
-                        <li>jQuery, Bootstrap, EJS</li>
-                    </ul>
-                </section>
-            </aside>
-
-            <main class="content-area">
-                <section class="content-section">
-                    <h2 class="content-section-title">Featured Project</h2>
-
-                    <div class="side-project-card">
-                        <div class="project-header">
-                            <div class="project-org">
-                                개인 프로젝트 · WebRTC 실시간 협업 플랫폼
-                                <span class="badge-special">🎯 현재 진행중</span>
-                            </div>
-                            <h3 class="project-title">PonsLink - 데이터 주권을 되찾는 통합 커뮤니케이션 플랫폼</h3>
-                            <p class="project-period">2025.08 ~ 진행중</p>
-                        </div>
-
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">Vite</span>
-                            <span class="tag">Zustand</span>
-                            <span class="tag">WebRTC</span>
-                            <span class="tag">Tailwind</span>
-                            <span class="tag">Konva</span>
-                            <span class="tag">Workbox</span>
-                            <span class="tag">PWA</span>
-                            <span class="tag">Framer Motion</span>
-                        </div>
-
-                        <div class="project-description">
-                            로그인 없이 사용 가능한 P2P 기반 올인원 커뮤니케이션 플랫폼. 개인정보 유출과 세대 간 단절이라는 사회적 문제를 기술로 해결하고자 시작한 프로젝트입니다.
-                        </div>
-
-                        <a href="https://ponslink.online" target="_blank" class="project-link demo">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polygon points="10 8 16 12 10 16 10 8"></polygon>
-                            </svg>
-                            라이브 데모 체험하기
-                        </a>
-
-                        <div class="media-gallery-section">
-                            <h4 class="media-gallery-title">프로젝트 데모</h4>
-                            <div class="media-grid">
-                                <div class="media-item" data-index="0">
-                                    <div class="media-zoom-icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                            <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="media-item-wrapper">
-                                        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOThuOHh0ampnOXkxN24wNGtlZzk3ZTVrbzZzdTdvOXRodmN6ZHd0dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/O0uzt30SYzmb6gOVuP/giphy.gif" alt="미디어 릴레이">
-                                    </div>
-                                    <div class="media-item-overlay">
-                                        <div class="media-item-title">미디어 릴레이</div>
-                                        <div class="media-item-description">다른 방에 스트림을 릴레이</div>
-                                    </div>
-                                </div>
-
-                                <div class="media-item" data-index="1">
-                                    <div class="media-zoom-icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                            <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="media-item-wrapper">
-                                        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3c1MHF3YWpscHdsMGhmZDB6YWlxcGp4bTR2aXdqZDh1M2NieGkwdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/or7Z693QyHK4F8GvTY/giphy.gif" alt="PonsCast">
-                                    </div>
-                                    <div class="media-item-overlay">
-                                        <div class="media-item-title">PonsCast</div>
-                                        <div class="media-item-description">로컬 파일을 스트리밍 해주는 시스템</div>
-                                    </div>
-                                </div>
-
-                                <div class="media-item" data-index="2">
-                                    <div class="media-zoom-icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                            <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="media-item-wrapper">
-                                        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTB0NGx0enpnd3l5ZzAza3k3MGJkbmN1d3dxZHZwa3doZmk3bnJydCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BWyJjHa0Sym0dGVODN/giphy.gif" alt="파일 전송 데모">
-                                    </div>
-                                    <div class="media-item-overlay">
-                                        <div class="media-item-title">P2P 파일 전송</div>
-                                        <div class="media-item-description">DataChannel 기반 안정적인 대용량 파일 전송</div>
-                                    </div>
-                                </div>
-
-                                <div class="media-item" data-index="3">
-                                    <div class="media-zoom-icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                            <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="media-item-wrapper">
-                                        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYW5qdzAwcnk3NmY3ZGw1MzVrcG9mN21nYm94MXBjc2h5azQ2MG80cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dlXCgcoMuPeLH9FMFf/giphy.gif" alt="동시 시청 데모">
-                                    </div>
-                                    <div class="media-item-overlay">
-                                        <div class="media-item-title">CoWatch 동시 시청</div>
-                                        <div class="media-item-description">웹 스트리밍 동기화 기반 실시간 함께 보기</div>
-                                    </div>
-                                </div>
-
-                                <div class="media-item" data-index="4">
-                                    <div class="media-zoom-icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                            <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="media-item-wrapper">
-                                        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjJyMWF5ZWVsb253YWo0Zm9oZzZvb2I1NTFnYWltcXNxaWp0YXk2NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gs6Wk1fGHLUNq0OlJn/giphy.gif" alt="화이트보드 데모">
-                                    </div>
-                                    <div class="media-item-overlay">
-                                        <div class="media-item-title">협업 화이트보드</div>
-                                        <div class="media-item-description">함께 그리면서 경험 동기화</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="story-section">
-                            <h4>프로젝트 탄생 배경</h4>
-                            <div class="story-content">
-                                <p>
-                                    <strong>세대 간 격차와 문화의 퇴색:</strong> 한국 사회는 점점 국가 문화를 잃어가고 있으며, 젊은 세대는 외국 문화에 열광하며 자국에 대한 애국심이 약해지고 있습니다. 수많은 SNS와 커뮤니케이션 툴이 있지만, 모두 인스턴트적인 1회성 만남에 그치고 있습니다. 팔로워가 1만 명이 넘어도 외로움에 목말라하는 시대, 이것이 제가 해결하고 싶었던 첫 번째 문제였습니다.
-                                </p>
-                                <p>
-                                    <strong>개인정보 유출과 데이터 주권:</strong> 개인정보 누출과 해킹이 만연한 현대 사회에서, 사용자는 자신의 데이터에 대한 주권을 잃었습니다. 저는 로그인이나 회원가입 없이도 국제적으로 누구나 안전하게 사용할 수 있는 플랫폼을 만들고 싶었습니다. 데이터는 무조건 사용자가 주권을 가져야 한다는 신념으로 시작했습니다.
-                                </p>
-                                <p>
-                                    <strong>그날의 공포:</strong> 우리는 아직 12월 3일 그날의 공포를 잊지 않고 있습니다. 머지않아 통신이 차단되고, 들어오는 정보가 사실과 같지 않을 때, 인터넷에 올라오는 글들로 우리가 세뇌될 때, 자유로운 의사소통이 제한받을 수 있다는 현실을 목격한 순간, 국가에 종속되지 않는 탈중앙화 커뮤니케이션의 필요성을 절실히 느꼈습니다.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="stat-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">0%</div>
-                                <div class="stat-label">서버 비용 (P2P)</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">100%</div>
-                                <div class="stat-label">데이터 주권 보장</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">E2E</div>
-                                <div class="stat-label">종단간 암호화</div>
-                            </div>
-                        </div>
-
-                        <div class="challenge-section">
-                            <h4>기술적 도전과 해결 과정</h4>
-                            
-                            <div class="challenge-item">
-                                <h5>Challenge #1: P2P 메쉬 네트워크의 확장성 한계</h5>
-                                <p>
-                                    <strong>문제:</strong> 메쉬 네트워크 구조에서는 각 참여자가 다른 모든 참여자와 직접 연결되기 때문에, 참여자 수가 증가하면 로컬 기기의 CPU와 네트워크 자원이 기하급수적으로 소모됩니다. 실제 테스트 결과 5명 이상의 동시 접속에서 성능 저하가 발생했습니다.
-                                </p>
-                                <div class="solution">
-                                    <p><strong>시도 1 - 미디어 릴레이:</strong> 각 다른 방에 참여한 사람들에게 미디어 스트림을 릴레이하는 방식을 시도했으나, 1홉까지만 안정적이었고 2홉 이상에서는 네트워크 대역폭 한계로 해상도가 깨지고 미디어 품질이 급격히 떨어졌습니다.</p>
-                                    <p><strong>시도 2 - SFU 서버 고려:</strong> Selective Forwarding Unit 서버를 도입하면 확장성 문제는 해결되지만, 서버로 트래픽이 집중되어 운영 비용을 감당할 수 없게 됩니다. 이는 "서버 비용 제로"라는 핵심 철학과 충돌했습니다.</p>
-                                    <p><strong>현재 해결 방향:</strong> Hybrid P2P + dCDN 아키텍처를 설계 중입니다. 각 노드가 상황에 따라 클라이언트 또는 서버 역할을 동적으로 전환하며, 대역폭이 충분한 노드가 자발적으로 릴레이 역할을 수행합니다. 이를 통해 중앙 서버 없이도 대규모 참여를 지원할 수 있을 것으로 기대하고 있습니다.</p>
-                                </div>
-                            </div>
-
-                            <div class="challenge-item">
-                                <h5>Challenge #2: 크로스 브라우저 호환성 (특히 iOS Safari)</h5>
-                                <p>
-                                    <strong>문제:</strong> iOS Safari는 MediaRecorder API를 제한적으로 지원하며, 특정 코덱과 스트리밍 방식에서 예상치 못한 동작을 보입니다. 안드로이드와 데스크톱에서 완벽히 작동하던 파일 스트리밍이 iOS에서는 재생되지 않았습니다.
-                                </p>
-                                <div class="solution">
-                                    <p><strong>해결책 - 적응형 스트리밍 엔진:</strong> MediaRecorder, captureStream, Canvas 기반 스트리밍 전략을 디바이스와 브라우저 환경에 따라 동적으로 선택하는 AdaptiveStreamManager를 구현했습니다. iOS 14.3 이상에서는 최적화된 분기 처리와 fallback 로직을 통해 끊김 없는 미디어 스트리밍을 제공합니다.</p>
-                                </div>
-                            </div>
-
-                            <div class="challenge-item">
-                                <h5>Challenge #3: P2P 파일 전송의 안정성</h5>
-                                <p>
-                                    <strong>문제:</strong> WebRTC DataChannel을 통한 대용량 파일 전송 시 네트워크 불안정, 전송 중단, 데이터 손실 등의 문제가 빈번하게 발생했습니다.
-                                </p>
-                                <div class="solution">
-                                    <p><strong>해결책 - 신뢰성 프로토콜 구현:</strong> ACK 기반 확인 메커니즘, 혼잡 제어 알고리즘, 적응형 청크 크기 조정을 구현했습니다. SHA-256 해시를 통한 무결성 검증과 Service Worker 캐싱을 결합하여 재개/일시정지 기능을 지원하며, 실시간 속도/ETA/RTT 지표 대시보드를 제공합니다.</p>
-                                </div>
-                            </div>
-
-                            <div class="challenge-item">
-                                <h5>Challenge #4: 올인원 플랫폼의 UI/UX 복잡도</h5>
-                                <p>
-                                    <strong>문제:</strong> 영상통화, 화면공유, 파일 전송, 화이트보드, YouTube 동시 시청 등 다양한 기능을 하나의 인터페이스에 통합하면서도 직관적인 사용성을 유지해야 했습니다.
-                                </p>
-                                <div class="solution">
-                                    <p><strong>해결책 - 모듈형 UI 아키텍처:</strong> 각 기능을 독립적인 모듈로 분리하고, Zustand를 활용한 세분화된 상태 관리로 관심사를 명확히 분리했습니다. 모바일 도크 자동숨김, PIP/미니 드래그, 200ms 내 피드백, Framer Motion 마이크로 인터랙션 등을 통해 반응형 UX를 최적화했습니다. 현재 UI를 더욱 입체적으로 만들기 위한 디자인 개선 작업이 진행 중입니다.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-title">Phase 1: 문제 정의 및 MVP 개발 (2025.08)</div>
-                                    <div class="timeline-text">사회적 문제 분석, 핵심 가치 정의, 기본 WebRTC P2P 통신 구현, 영상통화 및 채팅 기능 완성</div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-title">Phase 2: 기능 확장 및 안정화 (2025.09 ~ 진행중)</div>
-                                    <div class="timeline-text">파일 스트리밍, 협업 화이트보드, YouTube 동시 시청, 실시간 자막/번역 기능 추가. iOS Safari 호환성 확보. 신뢰성 프로토콜 구현.</div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-title">Phase 3: Hybrid P2P 아키텍처 전환 (계획중)</div>
-                                    <div class="timeline-text">dCDN 아키텍처 설계 및 구현. 각 노드의 동적 역할 전환 로직 개발. 대규모 참여 지원을 위한 성능 최적화.</div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-title">Phase 4: 탈중앙화 메신저로의 진화 (비전)</div>
-                                    <div class="timeline-text">블록체인 및 스마트 컨트랙트 통합. 국가에 종속되지 않는 자유로운 의사소통 플랫폼 완성. 데이터 주권의 완전한 구현.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="vision-section">
-                            <h4>미래 비전과 학습 과제</h4>
-                            <div class="vision-content">
-                                <p>
-                                    PonsLink의 최종 목표는 단순한 커뮤니케이션 플랫폼을 넘어 <strong>탈중앙화 메신저</strong>로 진화하는 것입니다. 국가에 종속되지 않고 자유로운 의사소통이 가능한 날을 고대하며, 다음 과제들을 하나씩 해결해 나가고 있습니다.
-                                </p>
-
-                                <ul class="vision-list">
-                                    <li><strong>블록체인 통합:</strong> 사용자 신원 관리와 메시지 무결성 검증을 위한 블록체인 기술 연구 및 적용</li>
-                                    <li><strong>스마트 컨트랙트:</strong> 자동화된 거버넌스와 인센티브 메커니즘 설계</li>
-                                    <li><strong>분산 스토리지:</strong> IPFS 또는 유사 기술을 활용한 파일 저장 시스템 구축</li>
-                                    <li><strong>암호학 심화:</strong> 종단간 암호화를 넘어선 고급 보안 프로토콜 학습 및 구현</li>
-                                    <li><strong>네트워크 이론:</strong> P2P 네트워크의 확장성과 안정성을 위한 이론적 기반 강화</li>
-                                    <li><strong>커뮤니티 거버넌스:</strong> 탈중앙화 플랫폼의 지속 가능한 운영 모델 연구</li>
-                                </ul>
-
-                                <p style="margin-top: 20px;">
-                                    이 프로젝트는 기술적 도전이자 사회적 실험입니다. 완벽한 솔루션은 아직 없지만, 문제를 정의하고 해결 과정을 투명하게 공유하며 함께 성장하는 것이 중요하다고 믿습니다. PonsLink는 단순히 "작동하는 제품"이 아니라, "더 나은 세상을 위한 도구"가 되기를 희망합니다.
-                                </p>
-                            </div>
-                        </div>
-
-                        <ul class="item-description">
-                            <li><strong>적응형 스트리밍 엔진 설계:</strong> MediaRecorder/captureStream/Canvas 전략을 디바이스·브라우저·네트워크 지표 기반으로 동적 선택하는 AdaptiveStreamManager 구현, iOS 14.3+ 최적화 분기 및 fallback 설계로 끊김 없는 미디어 스트리밍 제공</li>
-                            <li><strong>신뢰성 높은 P2P 파일 전송:</strong> DataChannel 기반 청크 전송에 ACK/혼잡 제어/적응형 청크 크기 조정 알고리즘 적용, SHA-256 무결성 검증 및 Service Worker 캐싱·백그라운드 동기화로 재개/일시정지/속도·ETA·RTT 실시간 지표 대시보드 구현</li>
-                            <li><strong>CoWatch(YouTube 동시 시청):</strong> YouTube IFrame API 커스텀 Provider 개발로 Host/Viewer 역할 분리, 재생/일시정지/시크/볼륨/배속 상태 브로드캐스트 및 PIP/미니/풀스크린 모드 전환 시 플레이어 스냅샷 저장·복원 로직 구현</li>
-                            <li><strong>실시간 협업 화이트보드:</strong> Konva + perfect-freehand 기반 펜/지우개/도형/텍스트/선택/트랜스폼/줌 기능 구현, 원격 커서 색상 해시 및 변경사항 브로드캐스트로 다중 사용자 동시 편집 지원</li>
-                            <li><strong>모듈형 상태 관리:</strong> Zustand로 세션/시그널링/WebRTC/미디어/파일스트리밍/화이트보드/자막/CoWatch/UI 스토어 분리, 관심사 분리 패턴 적용하여 유지보수성 확보</li>
-                            <li><strong>반응형 UX 최적화:</strong> 모바일 도크 자동숨김, PIP/미니 드래그, 자막 WCAG 대비 고려, 200ms 내 피드백 제공, Framer Motion 마이크로 인터랙션</li>
-                            <li><strong>운영 품질 관리:</strong> GA4 페이지/피처/에러 로깅, Zod 환경변수 런타임 검증으로 초기 구성 오류 차단, TURN 자격증명 자동 갱신(TTL 75% 시점) 및 재시도/쿼터 처리</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="content-section">
-                    <h2 class="content-section-title">경력</h2>
+                <div class="w-full md:w-2/3">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-2">전형동 <span class="text-slate-400 font-light text-xl ml-2">Declan Jeon</span></h2>
+                    <p class="text-primary font-bold mb-6 text-lg">Software Engineer</p>
                     
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-org">
-                                피어테라 · 개발부서 · 사원
-                            </div>
-                            <h3 class="project-title">프리랜서 풀스택 개발자</h3>
-                            <p class="project-period">2025.02 ~ 2025.08 (7개월) | 미드 레벨 · 풀스택 개발자</p>
+                    <p class="text-slate-600 leading-relaxed mb-8 text-lg">
+                        <strong>"왜?"</strong>라는 질문을 통해 문제의 본질을 파악하고, <strong>기술</strong>을 통해 가장 효율적인 해결책을 제시합니다.
+                        브라우저의 한계를 극복하는 최적화 기술과 사용자의 니즈를 충족시키는 서비스 아키텍처 설계에 강점이 있습니다.
+                        ETSI 국제 표준 프로젝트 경험을 통해 글로벌 규격을 준수하는 아키텍처를 설계한 경험이 있습니다.
+                    </p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="p-4 bg-slate-50 rounded-xl text-center border border-slate-200 hover:border-primary/50 transition-colors">
+                            <div class="text-lg font-bold text-slate-900 mb-1">Core</div>
+                            <div class="text-xs text-slate-500 font-semibold">WebRTC/OPFS</div>
                         </div>
-
-                        <div class="project-tags">
-                            <span class="tag">Express</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Next.js</span>
-                            <span class="tag">MySQL</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Playwright</span>
-                            <span class="tag">MariaDB</span>
+                        <div class="p-4 bg-slate-50 rounded-xl text-center border border-slate-200 hover:border-primary/50 transition-colors">
+                            <div class="text-lg font-bold text-slate-900 mb-1">Focus</div>
+                            <div class="text-xs text-slate-500 font-semibold">Problem Solving</div>
                         </div>
-
-                        <div class="project-description">
-                            상품 정품 인증 및 소유권 관리 통합 커머스 플랫폼의 기획, 설계, 개발에 참여하여 전체 제품 개발 프로세스를 총괄했습니다.
+                        <div class="p-4 bg-slate-50 rounded-xl text-center border border-slate-200 hover:border-primary/50 transition-colors">
+                            <div class="text-lg font-bold text-slate-900 mb-1">Lang</div>
+                            <div class="text-xs text-slate-500 font-semibold">Eng/Jp (Conv.)</div>
                         </div>
-
-                        <ul class="item-description">
-                            <li>사내 제품 개발 프로세스 전반 총괄 (기획 → 설계 → 구현 → 배포)</li>
-                            <li>시스템 아키텍처 설계 및 최적 기술 스택 선정</li>
-                            <li>코드 리뷰 프로세스 확립 및 개발 품질 관리 체계 구축</li>
-                            <li>크로스 기능팀 간 협업 조율 및 프로젝트 일정 관리</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-org">
-                                피어테라 · 상품 통합 커머스 플랫폼
-                            </div>
-                            <h3 class="project-title">상품 정품 인증 및 소유권 관리 플랫폼</h3>
-                            <p class="project-period">2025.03 ~ 2025.08 (6개월)</p>
-                        </div>
-
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">MariaDB</span>
-                            <span class="tag">Playwright</span>
-                        </div>
-
-                        <div class="project-description">
-                            정품 인증과 소유권 관리를 통합한 커머스 플랫폼의 프론트엔드 및 백엔드 시스템을 설계하고 구현했습니다.
-                        </div>
-
-                        <ul class="item-description">
-                            <li>React 기반 SPA 아키텍처 설계 및 전체 UI/UX 구현</li>
-                            <li>반응형 웹 디자인 적용으로 모바일/태블릿/데스크톱 크로스 플랫폼 지원</li>
-                            <li>상품 상세 페이지 통합 정보 뷰어 개발 (다중 데이터 소스 통합)</li>
-                            <li>QR 코드 스캔 기반 즉시 상품 페이지 라우팅 시스템 구현</li>
-                            <li>WYSIWYG 에디터 기반 직관적 상품 등록 인터페이스 개발 (이미지 업로드, 리치 텍스트 편집, 실시간 미리보기)</li>
-                            <li>상태 관리 라이브러리를 활용한 복잡한 폼 데이터 핸들링 및 유효성 검증</li>
-                            <li>사용자 대시보드 및 판매자 관리 페이지 구현</li>
-                            <li>JWT 기반 사용자 인증/인가 시스템 설계 및 구현</li>
-                            <li>세션 관리 및 리프레시 토큰 로직 구현으로 보안성 강화</li>
-                            <li>멀티 플랫폼 상품 메타데이터 자동 수집 시스템 개발 (Playwright 활용)</li>
-                            <li>HTML 파싱 및 구조화된 데이터 추출 로직 구현 (상품명, 가격, 이미지, 설명, 옵션 등)</li>
-                            <li>스크래핑 오류 처리 및 재시도 메커니즘 설계로 안정성 확보</li>
-                            <li>URL 입력만으로 원클릭 상품 등록 워크플로우 구현</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-org">
-                                ETSI ISG PDL PoC 03 · Owake Me Co., Ltd. · 개발부서 · 직원
-                                <span class="badge-special">🌍 국제 표준화</span>
-                            </div>
-                            <h3 class="project-title">TiME Project - Hybrid P2P 기반 메타버스 플랫폼</h3>
-                            <p class="project-period">2021.02 ~ 2025.01 (4년) | 미드 레벨 · 풀스택 개발자</p>
-                        </div>
-
-                        <div class="project-tags">
-                            <span class="tag">WebRTC</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">P2P Network</span>
-                            <span class="tag">CSS3</span>
-                            <span class="tag">Nginx</span>
-                            <span class="tag">Docker</span>
-                            <span class="tag">HTML5</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">EJS</span>
-                            <span class="tag">MySQL</span>
-                            <span class="tag">Java</span>
-                            <span class="tag">Spring</span>
-                        </div>
-
-                        <div class="project-description">
-                            유럽 통신 표준화 기구(ETSI) 분산원장 기술 실증 프로젝트의 핵심 개발자로 참여하여 Hybrid P2P 네트워크 환경의 설계에 참여하고 P2P 실시간 커뮤니케이션 시스템을 구현했습니다.
-                        </div>
-
-                        <a href="https://pdlwiki.etsi.org/index.php?title=PoC_03:_Timeless_in_Metaverse_Environment_based_on_Edge_networks_(TIME)" target="_blank" class="project-link">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>
-                            ETSI PDL Wiki - TIME Project 상세 정보
-                        </a>
-
-                        <ul class="item-description">
-                            <li>유럽 표준 프로젝트 ETSI의 TIME Project 프론트 개발자로 참여</li>
-                            <li>Hybrid P2P Network 아키텍처 설계 및 분산 통신 프로토콜 구현 참여</li>
-                            <li>분산 네트워크 환경에서의 데이터 동기화 로직 개발 및 최적화</li>
-                            <li>유럽 표준 규격 준수를 위한 기술 검증 및 문서화 작업 주도</li>
-                            <li>사내 제품 개발 프로세스 참여 (기획 → 설계 → 구현 → 배포)</li>
-                            <li>시스템 아키텍처 설계 및 기술 스택 선정</li>
-                            <li>코드 리뷰 프로세스 확립 및 개발 품질 관리</li>
-                            <li>크로스 기능팀 간 협업 조율 및 프로젝트 일정 관리</li>
-                            <li>Telefónica, KUNFUD 등 글로벌 파트너사와 국제 협업 경험</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-org">
-                                Owake Me Co., Ltd. · 글로벌 실시간 커뮤니케이션 플랫폼
-                            </div>
-                            <h3 class="project-title">Owake.Me - 실시간 콘텐츠 공유 플랫폼</h3>
-                            <p class="project-period">2021.02 ~ 2025.01 (4년)</p>
-                        </div>
-
-                        <div class="project-tags">
-                            <span class="tag">WebRTC</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">CSS3</span>
-                            <span class="tag">Nginx</span>
-                            <span class="tag">HTML5</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">EJS</span>
-                        </div>
-
-                        <div class="project-description">
-                            WebRTC 기반 실시간 P2P 커뮤니케이션 플랫폼의 전체 개발 라이프사이클을 주도하여 제품 출시까지 완료했습니다.
-                        </div>
-
-                        <ul class="item-description">
-                            <li>WebRTC 기반 실시간 P2P 커뮤니케이션 플랫폼 전체 개발 라이프사이클 주도</li>
-                            <li>제품 기획 단계부터 시스템 아키텍처 설계, 핵심 기능 구현, 프로덕션 배포까지 전 과정 총괄</li>
-                            <li>고품질 음성 통신 기능 구현 (WebRTC Audio API 활용, 노이즈 캔슬링 적용)</li>
-                            <li>1:1 화상 회의 시스템 개발 (메시 아키텍처 기반 실시간 통신)</li>
-                            <li>랜덤 채팅 알고리즘 개발 및 매칭 로직 최적화</li>
-                            <li>실시간 채팅 시스템 구축 (WebSocket 기반 양방향 통신)</li>
-                            <li>협업 화이트보드 기능 설계 및 구현 (실시간 동기화, 다중 사용자 동시 편집 지원)</li>
-                            <li>P2P 기반 파일 전송 시스템 개발 (대용량 파일 청크 분할 전송, 재개 기능)</li>
-                            <li>화면 공유 기능 구현 (전체 화면/특정 창 선택, 프레임 레이트 최적화)</li>
-                            <li>미디어 파일 스트리밍 시스템 구축 (적응형 비트레이트 스트리밍, 버퍼링 최적화)</li>
-                            <li>WebRTC 시그널링 서버 설계 및 NAT traversal을 위한 STUN/TURN 서버 구성</li>
-                            <li>실시간 데이터 동기화를 위한 WebSocket 기반 통신 프로토콜 설계</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-org">
-                                개인 프로젝트 · 위치 기반 커뮤니티 플랫폼
-                            </div>
-                            <h3 class="project-title">PlayTogether - 실시간 위치 기반 매칭 플랫폼</h3>
-                            <p class="project-period">2024.06 ~ 2024.08 (3개월)</p>
-                        </div>
-
-                        <div class="project-tags">
-                            <span class="tag">MySQL</span>
-                            <span class="tag">WebRTC</span>
-                            <span class="tag">OpenStreetMap</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express</span>
-                        </div>
-
-                        <div class="project-description">
-                            위치 기반 실시간 커뮤니티 매칭 플랫폼을 기획부터 배포까지 단독으로 개발하여 완성했습니다.
-                        </div>
-
-                        <ul class="item-description">
-                            <li>위치 기반 실시간 커뮤니티 매칭 플랫폼 'PlayTogether' 풀스택 개발 전담</li>
-                            <li>서버 인프라 구축부터 프론트엔드/백엔드 개발, 프로덕션 배포까지 전체 라이프사이클 주도</li>
-                            <li>인터랙티브 지도 기반 UI/UX 설계 및 구현 (OpenStreetMap API 통합, 마커 클러스터링)</li>
-                            <li>위치 기반 방 생성/조회/수정/삭제(CRUD) 시스템 개발</li>
-                            <li>실시간 마커 정보 동기화 및 지도 상 시각화 기능 구현</li>
-                            <li>방 메타데이터 관리 시스템 구축 (제목, 설명, 참여 인원, 카테고리, 시간 정보 등)</li>
-                            <li>RESTful API 설계 및 백엔드 서버 아키텍처 구축</li>
-                            <li>사용자 인증/인가 시스템 구현 (JWT 기반 세션 관리)</li>
-                            <li>WebRTC 기반 실시간 음성/화상 통신 모듈 통합</li>
-                            <li>방 참여 시 자동 커뮤니케이션 세션 생성 및 연결 관리</li>
-                            <li>시그널링 서버 구축 및 P2P 연결 최적화</li>
-                            <li>클라우드 서버 환경 구성 및 보안 설정</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="content-section">
-                    <h2 class="content-section-title">숙련 기술</h2>
-                    <div class="skills-chart">
-                        <div class="skill-item">
-                            <div class="skill-circle">
-                                <svg width="140" height="140">
-                                    <circle class="circle-bg" cx="70" cy="70" r="60"/>
-                                    <circle class="circle-progress" cx="70" cy="70" r="60" 
-                                            stroke-dasharray="377" stroke-dashoffset="38"/>
-                                </svg>
-                                <div class="circle-text">90%</div>
-                            </div>
-                            <div class="skill-label">WebRTC & P2P</div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-circle">
-                                <svg width="140" height="140">
-                                    <circle class="circle-bg" cx="70" cy="70" r="60"/>
-                                    <circle class="circle-progress" cx="70" cy="70" r="60" 
-                                            stroke-dasharray="377" stroke-dashoffset="56"/>
-                                </svg>
-                                <div class="circle-text">85%</div>
-                            </div>
-                            <div class="skill-label">Full Stack Dev</div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-circle">
-                                <svg width="140" height="140">
-                                    <circle class="circle-bg" cx="70" cy="70" r="60"/>
-                                    <circle class="circle-progress" cx="70" cy="70" r="60" 
-                                            stroke-dasharray="377" stroke-dashoffset="75"/>
-                                </svg>
-                                <div class="circle-text">80%</div>
-                            </div>
-                            <div class="skill-label">System Design</div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-circle">
-                                <svg width="140" height="140">
-                                    <circle class="circle-bg" cx="70" cy="70" r="60"/>
-                                    <circle class="circle-progress" cx="70" cy="70" r="60" 
-                                            stroke-dasharray="377" stroke-dashoffset="94"/>
-                                </svg>
-                                <div class="circle-text">75%</div>
-                            </div>
-                            <div class="skill-label">Project Management</div>
+                        <div class="p-4 bg-slate-50 rounded-xl text-center border border-slate-200 hover:border-primary/50 transition-colors">
+                            <div class="text-lg font-bold text-slate-900 mb-1">Stack</div>
+                            <div class="text-xs text-slate-500 font-semibold">Full-Stack</div>
                         </div>
                     </div>
-                </section>
-            </main>
-        </div>
-    </div>
-
-    <div id="imageModal" class="modal">
-        <div class="modal-close"></div>
-        <div class="modal-nav prev">
-            <svg viewBox="0 0 24 24">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-            </svg>
-        </div>
-        <div class="modal-nav next">
-            <svg viewBox="0 0 24 24">
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-            </svg>
-        </div>
-        <div class="modal-content">
-            <img id="modalImage" src="" alt="확대 이미지">
-            <div class="modal-info">
-                <div class="modal-info-title" id="modalTitle"></div>
-                <div class="modal-info-description" id="modalDescription"></div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="projects" class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 text-center">
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Engineering Highlights</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto text-lg">
+                    실제 직면한 기술적 난제와 비효율을 해결한 6가지 핵심 프로젝트입니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- PonsLink -->
+                <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
+                    <!-- Viewer -->
+                    <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
+                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
+                                <i class="fas fa-play text-primary"></i> Hover to Play
+                            </span>
+                        </div>
+                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
+                            <i class="fas fa-video text-6xl opacity-20"></i>
+                        </div>
+                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
+                            <source src="./media/ponslink-main.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900">PonsLink</h3>
+                                <p class="text-sm text-slate-500 font-medium mt-1">보안 중심 올인원 커뮤니케이션 툴</p>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">WebRTC</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="challenge-box">
+                                <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
+                                <p class="text-slate-600">기존 화상회의 툴의 보안 우려와 복잡한 기능 연동(영상+채팅+화이트보드) 시 발생하는 모듈 간 충돌 및 OS별(특히 iOS) 호환성 문제.</p>
+                            </div>
+                            <div class="solution-box">
+                                <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li>기능별 <strong>모듈 격리 아키텍처</strong> 설계로 충돌 방지.</li>
+                                    <li>OS별 제약 사항 분석을 통해 <strong>iOS 모바일에서 화이트보드 기능을 제한하는 적응형 UX</strong> 구현으로 스냅핑/새로고침 오류 원천 차단.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-6 mb-6">
+                            <span class="tech-badge bg-slate-100 text-slate-700">React</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">WebRTC</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Zustand</span>
+                        </div>
+                        <div class="flex gap-3 mt-auto pt-4 border-t border-slate-100">
+                            <a href="https://ponslink.online" target="_blank" class="flex-1 py-2.5 bg-primary text-white text-center rounded-lg font-bold text-sm hover:bg-blue-600 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                                <i class="fas fa-globe"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/DeclanJeon/Pons-Link" target="_blank" class="flex-1 py-2.5 bg-white border border-slate-200 text-slate-700 text-center rounded-lg font-bold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PonsWarp -->
+                <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
+                    <!-- Viewer -->
+                    <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
+                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
+                                <i class="fas fa-play text-primary"></i> Hover to Play
+                            </span>
+                        </div>
+                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
+                            <i class="fas fa-hdd text-6xl opacity-20"></i>
+                        </div>
+                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
+                            <source src="./media/ponswarp-demo.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900">PonsWarp</h3>
+                                <p class="text-sm text-slate-500 font-medium mt-1">초고속 대용량 P2P 파일 전송</p>
+                            </div>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Performance</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="challenge-box">
+                                <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
+                                <p class="text-slate-600">브라우저 메모리 한계로 인한 대용량 파일 전송 중단 및 SCTP 프로토콜 상의 전송 속도 불안정.</p>
+                            </div>
+                            <div class="solution-box">
+                                <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li><strong>64kb 청크 사이즈</strong>가 가장 안정적임을 실험으로 도출 및 적용.</li>
+                                    <li><strong>OPFS(Origin Private File System)</strong> 도입으로 메모리를 거치지 않는 디스크 직접 쓰기 구현.</li>
+                                    <li>향후 <strong>dCDN</strong> 도입을 위한 아키텍처 설계.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-6 mb-6">
+                            <span class="tech-badge bg-slate-100 text-slate-700">OPFS</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">DataChannel</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">WebWorkers</span>
+                        </div>
+                        <div class="flex gap-3 mt-auto pt-4 border-t border-slate-100">
+                            <a href="https://warp.ponslink.online" target="_blank" class="flex-1 py-2.5 bg-primary text-white text-center rounded-lg font-bold text-sm hover:bg-blue-600 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                                <i class="fas fa-globe"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/DeclanJeon/PonsWarp" target="_blank" class="flex-1 py-2.5 bg-white border border-slate-200 text-slate-600 text-center rounded-lg font-bold text-sm hover:bg-slate-50 transition-colors">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ClickCap -->
+                <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
+                    <!-- Viewer -->
+                    <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
+                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
+                                <i class="fas fa-play text-primary"></i> Hover to Play
+                            </span>
+                        </div>
+                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
+                            <i class="fas fa-mouse-pointer text-6xl opacity-20"></i>
+                        </div>
+                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
+                            <source src="./media/clickcap-demo.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900">ClickCap</h3>
+                                <p class="text-sm text-slate-500 font-medium mt-1">스마트 화면 녹화 익스텐션</p>
+                            </div>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded-full">Extension</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="challenge-box">
+                                <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
+                                <p class="text-slate-600">기존 상용 툴의 비용 부담과 Canvas, Video, OS 레이어 간의 복잡한 렌더링 동기화 문제.</p>
+                            </div>
+                            <div class="solution-box">
+                                <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li><strong>Canvas 기반 커스텀 녹화 엔진</strong> 구현으로 비용 제로화.</li>
+                                    <li>초기 클릭 줌 방식의 불편함을 개선하여 <strong>키보드(Z키) 기반 줌 인터랙션</strong>으로 UX 개선.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-6 mb-6">
+                            <span class="tech-badge bg-slate-100 text-slate-700">Chrome API</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Offscreen</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Canvas</span>
+                        </div>
+                        <div class="flex gap-3 mt-auto pt-4 border-t border-slate-100">
+                            <a href="https://github.com/DeclanJeon/ClickCap" target="_blank" class="w-full py-2.5 bg-white border border-slate-200 text-slate-700 text-center rounded-lg font-bold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TrendLens -->
+                <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
+                    <!-- Viewer -->
+                    <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
+                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
+                                <i class="fas fa-play text-primary"></i> Hover to Play
+                            </span>
+                        </div>
+                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
+                            <i class="fas fa-chart-line text-6xl opacity-20"></i>
+                        </div>
+                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
+                            <source src="./media/trendlens-demo.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900">TrendLens</h3>
+                                <p class="text-sm text-slate-500 font-medium mt-1">AI 기반 유튜브 트렌드 분석</p>
+                            </div>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full">AI / Data</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="challenge-box">
+                                <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
+                                <p class="text-slate-600">구글 트렌드의 직관성 부족 및 분석 데이터를 실제 콘텐츠 제작으로 연결하는 과정의 어려움.</p>
+                            </div>
+                            <div class="solution-box">
+                                <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li>직관적인 인기 콘텐츠 시각화 및 <strong>AI 영상 프롬프트 자동 생성</strong> 파이프라인 구축.</li>
+                                    <li>실제 <strong>1시간 내 조회수 500 달성</strong>으로 유효성 검증.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-6 mb-6">
+                            <span class="tech-badge bg-slate-100 text-slate-700">Gemini API</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Python</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Data Analysis</span>
+                        </div>
+                        <div class="flex gap-3 mt-auto pt-4 border-t border-slate-100">
+                            <a href="https://github.com/DeclanJeon/TrendLens" target="_blank" class="w-full py-2.5 bg-white border border-slate-200 text-slate-700 text-center rounded-lg font-bold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CodeWeaver -->
+                <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
+                    <!-- Viewer -->
+                    <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
+                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
+                                <i class="fas fa-play text-primary"></i> Hover to Play
+                            </span>
+                        </div>
+                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
+                            <i class="fas fa-code text-6xl opacity-20"></i>
+                        </div>
+                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
+                            <source src="./media/codeweaver-demo.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900">CodeWeaver</h3>
+                                <p class="text-sm text-slate-500 font-medium mt-1">프로젝트 구조 분석 및 문서화</p>
+                            </div>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-full">DX Tool</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="challenge-box">
+                                <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
+                                <p class="text-slate-600">거대 프로젝트 분석 시 불필요한 파일 포함으로 인한 토큰 낭비 및 민감 정보 노출 위험.</p>
+                            </div>
+                            <div class="solution-box">
+                                <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li><strong>선택적 파일 파싱</strong> 및 마크다운 변환 기능 구현.</li>
+                                    <li><strong>AI 연동</strong>으로 기능 관련 파일만 자동 추천하여 수동 선택의 번거로움 제거.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-6 mb-6">
+                            <span class="tech-badge bg-slate-100 text-slate-700">AST Parsing</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Node.js</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">AI Integration</span>
+                        </div>
+                        <div class="flex gap-3 mt-auto pt-4 border-t border-slate-100">
+                            <a href="https://github.com/DeclanJeon/CodeWeaver" target="_blank" class="w-full py-2.5 bg-white border border-slate-200 text-slate-700 text-center rounded-lg font-bold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Private PDF -->
+                <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
+                    <!-- Viewer -->
+                    <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
+                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
+                                <i class="fas fa-play text-primary"></i> Hover to Play
+                            </span>
+                        </div>
+                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
+                            <i class="fas fa-file-shield text-6xl opacity-20"></i>
+                        </div>
+                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
+                            <source src="./media/ppdf-demo.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900">Private PDF</h3>
+                                <p class="text-sm text-slate-500 font-medium mt-1">서버리스 보안 마스킹 도구</p>
+                            </div>
+                            <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-full">Security</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="challenge-box">
+                                <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
+                                <p class="text-slate-600">보안 문서 공유 시 포토샵의 번거로움과 단순 오버레이 방식의 텍스트 추출 취약점.</p>
+                            </div>
+                            <div class="solution-box">
+                                <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li><strong>100% 클라이언트 사이드 처리</strong>로 데이터 유출 원천 차단.</li>
+                                    <li>마스킹 영역을 단순 가림이 아닌 <strong>이미지 래스터화(Rasterization)</strong> 처리하여 텍스트 추출 불가능하게 구현.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-6 mb-6">
+                            <span class="tech-badge bg-slate-100 text-slate-700">PDF.js</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Canvas API</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Client-Side</span>
+                        </div>
+                        <div class="flex gap-3 mt-auto pt-4 border-t border-slate-100">
+                            <a href="https://ppdf.ponslink.online" target="_blank" class="flex-1 py-2.5 bg-primary text-white text-center rounded-lg font-bold text-sm hover:bg-blue-600 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                                <i class="fas fa-globe"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/DeclanJeon/Private-PDF" target="_blank" class="flex-1 py-2.5 bg-white border border-slate-200 text-slate-700 text-center rounded-lg font-bold text-sm hover:bg-slate-50 transition-colors">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-white border-t border-slate-100 text-center relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Ready to solve complex problems?</h2>
+            <p class="text-slate-500 mb-10 max-w-xl mx-auto text-lg">
+                기술적 난제 해결과 효율적인 시스템 설계가 필요하다면 연락주세요.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="mailto:syas0301@gmail.com" class="px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-primary transition-all shadow-lg shadow-slate-900/20 transform hover:-translate-y-1">
+                    <i class="fas fa-envelope mr-2"></i> 이메일 보내기
+                </a>
+                <a href="https://github.com/declanjeon" target="_blank" class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-full font-bold hover:bg-slate-50 hover:border-slate-300 transition-all transform hover:-translate-y-1">
+                    <i class="fab fa-github mr-2"></i> GitHub
+                </a>
+            </div>
+            <div class="mt-16 text-sm text-slate-400">
+                © 2025 Jeon Hyeong-dong.
+            </div>
+        </div>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const progressCircles = document.querySelectorAll('.circle-progress');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.transition = 'stroke-dashoffset 1.5s ease-out';
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            progressCircles.forEach(circle => observer.observe(circle));
-
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDescription = document.getElementById('modalDescription');
-            const modalClose = document.querySelector('.modal-close');
-            const prevBtn = document.querySelector('.modal-nav.prev');
-            const nextBtn = document.querySelector('.modal-nav.next');
-            const mediaItems = document.querySelectorAll('.media-item');
-
-            let currentIndex = 0;
-            const mediaData = [];
-
-            mediaItems.forEach((item, index) => {
-                const img = item.querySelector('img');
-                const title = item.querySelector('.media-item-title').textContent;
-                const description = item.querySelector('.media-item-description').textContent;
-                
-                mediaData.push({
-                    src: img.src,
-                    title: title,
-                    description: description
-                });
-
-                item.addEventListener('click', () => {
-                    currentIndex = index;
-                    openModal();
-                });
-            });
-
-            function openModal() {
-                const data = mediaData[currentIndex];
-                modalImage.src = data.src;
-                modalTitle.textContent = data.title;
-                modalDescription.textContent = data.description;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+        // Scroll Effect for Navbar
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-sm');
+            } else {
+                nav.classList.remove('shadow-sm');
             }
+        });
 
-            function closeModal() {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
+        // Video Hover Play
+        document.querySelectorAll('.project-card').forEach(card => {
+            const video = card.querySelector('video');
+            if(video) {
+                video.muted = true;
+                card.addEventListener('mouseenter', () => video.play().catch(e => {}));
+                card.addEventListener('mouseleave', () => video.pause());
             }
-
-            function showPrev() {
-                currentIndex = (currentIndex - 1 + mediaData.length) % mediaData.length;
-                openModal();
-            }
-
-            function showNext() {
-                currentIndex = (currentIndex + 1) % mediaData.length;
-                openModal();
-            }
-
-            modalClose.addEventListener('click', closeModal);
-            prevBtn.addEventListener('click', showPrev);
-            nextBtn.addEventListener('click', showNext);
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (!modal.classList.contains('active')) return;
-                
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowLeft') showPrev();
-                if (e.key === 'ArrowRight') showNext();
-            });
         });
     </script>
 </body>
