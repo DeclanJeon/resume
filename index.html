@@ -65,9 +65,26 @@
         .project-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
         
-        /* Hover Video Effect */
-        .project-card:hover .static-thumb { opacity: 0; }
-        .project-card:hover .gif-play { opacity: 1; transform: scale(1.05); }
+        /* Auto-playing GIF Viewer */
+        .gif-viewer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .static-thumb {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
 
         .tech-badge {
             @apply px-2.5 py-1 rounded-md text-xs font-semibold border transition-colors;
@@ -146,7 +163,7 @@
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                         <div class="p-4 bg-slate-50 rounded-xl text-center border border-slate-200 hover:border-primary/50 transition-colors">
                             <div class="text-lg font-bold text-slate-900 mb-1">Core</div>
-                            <div class="text-xs text-slate-500 font-semibold">WebRTC/OPFS</div>
+                            <div class="text-xs text-slate-500 font-semibold">WebRTC</div>
                         </div>
                         <div class="p-4 bg-slate-50 rounded-xl text-center border border-slate-200 hover:border-primary/50 transition-colors">
                             <div class="text-lg font-bold text-slate-900 mb-1">Focus</div>
@@ -177,19 +194,13 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 
+                <!-- Project 1: PonsLink -->
                 <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
                     <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
-                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
-                                <i class="fas fa-play text-primary"></i> Hover to Play
-                            </span>
+                        <img class="gif-viewer" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHJ2dDU1YmE0cGNsbmFucnZvZXI5djNtcnFlbzNyZnI3ejF3b3B5cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/or7Z693QyHK4F8GvTY/giphy.gif" alt="PonsLink Preview">
+                        <div class="static-thumb">
+                            <i class="fas fa-video text-6xl opacity-20 text-slate-400"></i>
                         </div>
-                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
-                            <i class="fas fa-video text-6xl opacity-20"></i>
-                        </div>
-                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
-                            <source src="./media/ponslink-main.mp4" type="video/mp4">
-                        </video>
                     </div>
                     <div class="p-8 flex flex-col flex-grow">
                         <div class="flex justify-between items-start mb-4">
@@ -202,13 +213,15 @@
                         <div class="flex-grow">
                             <div class="challenge-box">
                                 <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
-                                <p class="text-slate-600">기존 화상회의 툴의 보안 우려와 복잡한 기능 연동(영상+채팅+화이트보드) 시 발생하는 모듈 간 충돌 및 OS별(특히 iOS) 호환성 문제.</p>
+                                <p class="text-slate-600">누구나 로그인 없이 사용하면서 보안 통신에 다양한 툴을 이용할 수 있는 통합 플랫폼의 부재. 해외 친구들과의 소통 및 콘텐츠 공유에 대한 접근성 한계.</p>
                             </div>
                             <div class="solution-box">
                                 <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
                                 <ul class="list-disc list-inside text-slate-600 space-y-1">
-                                    <li>기능별 <strong>모듈 격리 아키텍처</strong> 설계로 충돌 방지.</li>
-                                    <li>OS별 제약 사항 분석을 통해 <strong>iOS 모바일에서 화이트보드 기능을 제한하는 적응형 UX</strong> 구현으로 스냅핑/새로고침 오류 원천 차단.</li>
+                                    <li><strong>로그인 없는 즉시 사용</strong> 가능한 보안 통신 플랫폼으로 진입 장벽 제거.</li>
+                                    <li>해외 친구들과 <strong>실시간 영화 스트리밍</strong> 및 <strong>유튜브 동시 시청</strong> 기능으로 원활한 소통 환경 제공.</li>
+                                    <li>민감한 파일 전송이 아닌 <strong>실시간 스트리밍</strong> 방식으로 보안성 강화와 사용 편의성 동시 달성.</li>
+                                    <li>글로벌 커뮤니케이션 장벽을 낮추는 <strong>디지털 문화 교류 플랫폼</strong> 구현.</li>
                                 </ul>
                             </div>
                         </div>
@@ -228,46 +241,42 @@
                     </div>
                 </article>
 
+                <!-- Project 2: PonsWarp -->
                 <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
                     <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
-                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
-                                <i class="fas fa-play text-primary"></i> Hover to Play
-                            </span>
+                        <img class="gif-viewer" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDBhOTR5YTY4bmt3MHdpdnEzZWpkendpZ2RjazF1aHB6dWh6bzQ3NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8xorKjfKhatiFvjxgS/giphy.gif" alt="PonsWarp Preview">
+                        <div class="static-thumb">
+                            <i class="fas fa-rocket text-6xl opacity-20 text-slate-400"></i>
                         </div>
-                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
-                            <i class="fas fa-hdd text-6xl opacity-20"></i>
-                        </div>
-                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
-                            <source src="./media/ponswarp-demo.mp4" type="video/mp4">
-                        </video>
                     </div>
                     <div class="p-8 flex flex-col flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div>
                                 <h3 class="text-2xl font-bold text-slate-900">PonsWarp</h3>
-                                <p class="text-sm text-slate-500 font-medium mt-1">초고속 대용량 P2P 파일 전송</p>
+                                <p class="text-sm text-slate-500 font-medium mt-1">서버리스 무제한 파일 전송</p>
                             </div>
-                            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Performance</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-full">Serverless P2P</span>
                         </div>
                         <div class="flex-grow">
                             <div class="challenge-box">
                                 <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
-                                <p class="text-slate-600">브라우저 메모리 한계로 인한 대용량 파일 전송 중단 및 SCTP 프로토콜 상의 전송 속도 불안정.</p>
+                                <p class="text-slate-600">클라우드 기반 파일 전송 서비스는 용량 제한과 서버 경유로 인한 비효율성이 존재. 브라우저의 메모리 한계로 대용량 파일(100GB 이상) 처리가 불가능하며, 기존 P2P 솔루션도 여전히 서버 의존성을 가짐.</p>
                             </div>
                             <div class="solution-box">
                                 <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
                                 <ul class="list-disc list-inside text-slate-600 space-y-1">
-                                    <li><strong>64kb 청크 사이즈</strong>가 가장 안정적임을 실험으로 도출 및 적용.</li>
-                                    <li><strong>OPFS(Origin Private File System)</strong> 도입으로 메모리를 거치지 않는 디스크 직접 쓰기 구현.</li>
-                                    <li>향후 <strong>dCDN</strong> 도입을 위한 아키텍처 설계.</li>
+                                    <li><strong>진정한 서버리스 P2P:</strong> 파일을 서버에 저장하지 않고 브라우저 간 직통 터널을 구축하여 업로드와 다운로드를 동시에 처리.</li>
+                                    <li><strong>무제한 용량 처리:</strong> StreamSaver.js와 File System Access API로 RAM에 쌓지 않고 즉시 디스크에 스트리밍하여 1TB 파일도 브라우저 탭 하나로 전송.</li>
+                                    <li><strong>WASM 기반 고성능 암호화:</strong> Rust(WASM) 모듈로 네이티브 앱 수준의 암호화 속도를 구현하며 메인 스레드 블로킹 없음.</li>
+                                    <li><strong>스마트 혼잡 제어:</strong> NetworkAdaptiveController가 네트워크 상태를 실시간 분석하여 패킷 손실 없는 최고 속도 유지.</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mt-6 mb-6">
-                            <span class="tech-badge bg-slate-100 text-slate-700">OPFS</span>
-                            <span class="tech-badge bg-slate-100 text-slate-700">DataChannel</span>
-                            <span class="tech-badge bg-slate-100 text-slate-700">WebWorkers</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">WASM (Rust)</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Direct P2P</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">StreamSaver.js</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">File System API</span>
                         </div>
                         <div class="flex gap-3 mt-auto pt-4 border-t border-slate-100">
                             <a href="https://warp.ponslink.online" target="_blank" class="flex-1 py-2.5 bg-primary text-white text-center rounded-lg font-bold text-sm hover:bg-blue-600 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
@@ -280,19 +289,13 @@
                     </div>
                 </article>
 
+                <!-- Project 3: ClickCap -->
                 <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
                     <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
-                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
-                                <i class="fas fa-play text-primary"></i> Hover to Play
-                            </span>
+                        <img class="gif-viewer" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHAxaXMxNWZhbHJzOWlodG1tMTJ4ZmM0cTA0eWlzNnJzNW9kcGQ4ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sjNBNF11aEN3TJmxan/giphy.gif" alt="ClickCap Preview">
+                        <div class="static-thumb">
+                            <i class="fas fa-mouse-pointer text-6xl opacity-20 text-slate-400"></i>
                         </div>
-                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
-                            <i class="fas fa-mouse-pointer text-6xl opacity-20"></i>
-                        </div>
-                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
-                            <source src="./media/clickcap-demo.mp4" type="video/mp4">
-                        </video>
                     </div>
                     <div class="p-8 flex flex-col flex-grow">
                         <div class="flex justify-between items-start mb-4">
@@ -305,12 +308,13 @@
                         <div class="flex-grow">
                             <div class="challenge-box">
                                 <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
-                                <p class="text-slate-600">기존 상용 툴의 비용 부담과 Canvas, Video, OS 레이어 간의 복잡한 렌더링 동기화 문제.</p>
+                                <p class="text-slate-600">기존 화면 녹화 툴들은 불필요한 복잡한 기능들로 가득하여 사용자 경험을 해치고, 대부분 상용화되어 있어 접근성이 낮았으며 녹화 화질 보장도 어려웠음.</p>
                             </div>
                             <div class="solution-box">
                                 <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
                                 <ul class="list-disc list-inside text-slate-600 space-y-1">
-                                    <li><strong>Canvas 기반 커스텀 녹화 엔진</strong> 구현으로 비용 제로화.</li>
+                                    <li>기존 툴들의 <strong>복잡한 기능을 모두 제거</strong>하고 오로지 <strong>녹화 기능에만 집중</strong>한 미니멀한 디자인으로 사용자 경험 극대화.</li>
+                                    <li>상용 툴들의 접근성 문제와 녹화 화질 보안의 어려움을 해결하기 위해 <strong>직접 커스텀 녹화 엔진을 구현</strong>하여 완벽한 품질 보장.</li>
                                     <li>초기 클릭 줌 방식의 불편함을 개선하여 <strong>키보드(Z키) 기반 줌 인터랙션</strong>으로 UX 개선.</li>
                                 </ul>
                             </div>
@@ -328,67 +332,13 @@
                     </div>
                 </article>
 
+                <!-- Project 4: CodeWeaver -->
                 <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
                     <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
-                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
-                                <i class="fas fa-play text-primary"></i> Hover to Play
-                            </span>
+                        <img class="gif-viewer" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWU3MWZubDYzcGRtcGFhcGhwMHlhZHAxa25mb2ExcngxY3Y5aG5xeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3Cu4LxUbxq7Cm3tGhy/giphy.gif" alt="CodeWeaver Preview">
+                        <div class="static-thumb">
+                            <i class="fas fa-code text-6xl opacity-20 text-slate-400"></i>
                         </div>
-                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
-                            <i class="fas fa-chart-line text-6xl opacity-20"></i>
-                        </div>
-                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
-                            <source src="./media/trendlens-demo.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-slate-900">TrendLens</h3>
-                                <p class="text-sm text-slate-500 font-medium mt-1">AI 기반 유튜브 트렌드 분석</p>
-                            </div>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full">AI / Data</span>
-                        </div>
-                        <div class="flex-grow">
-                            <div class="challenge-box">
-                                <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
-                                <p class="text-slate-600">구글 트렌드의 직관성 부족 및 분석 데이터를 실제 콘텐츠 제작으로 연결하는 과정의 어려움.</p>
-                            </div>
-                            <div class="solution-box">
-                                <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
-                                <ul class="list-disc list-inside text-slate-600 space-y-1">
-                                    <li>직관적인 인기 콘텐츠 시각화 및 <strong>AI 영상 프롬프트 자동 생성</strong> 파이프라인 구축.</li>
-                                    <li>실제 <strong>1시간 내 조회수 500 달성</strong>으로 유효성 검증.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2 mt-6 mb-6">
-                            <span class="tech-badge bg-slate-100 text-slate-700">Gemini API</span>
-                            <span class="tech-badge bg-slate-100 text-slate-700">Python</span>
-                            <span class="tech-badge bg-slate-100 text-slate-700">Data Analysis</span>
-                        </div>
-                        <div class="flex gap-3 mt-auto pt-4 border-t border-slate-100">
-                            <a href="https://github.com/DeclanJeon/TrendLens" target="_blank" class="w-full py-2.5 bg-white border border-slate-200 text-slate-700 text-center rounded-lg font-bold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
-                    <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
-                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
-                                <i class="fas fa-play text-primary"></i> Hover to Play
-                            </span>
-                        </div>
-                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
-                            <i class="fas fa-code text-6xl opacity-20"></i>
-                        </div>
-                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
-                            <source src="./media/codeweaver-demo.mp4" type="video/mp4">
-                        </video>
                     </div>
                     <div class="p-8 flex flex-col flex-grow">
                         <div class="flex justify-between items-start mb-4">
@@ -401,13 +351,14 @@
                         <div class="flex-grow">
                             <div class="challenge-box">
                                 <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
-                                <p class="text-slate-600">거대 프로젝트 분석 시 불필요한 파일 포함으로 인한 토큰 낭비 및 민감 정보 노출 위험.</p>
+                                <p class="text-slate-600">개별 파일 검토로는 전체적인 아키텍처 이해와 설계상의 에러 발견이 어려움.</p>
                             </div>
                             <div class="solution-box">
                                 <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
                                 <ul class="list-disc list-inside text-slate-600 space-y-1">
-                                    <li><strong>선택적 파일 파싱</strong> 및 마크다운 변환 기능 구현.</li>
-                                    <li><strong>AI 연동</strong>으로 기능 관련 파일만 자동 추천하여 수동 선택의 번거로움 제거.</li>
+                                    <li><strong>전체 프로젝트 구조 한 번에 전달:</strong> 프로젝트의 전체 로직을 통합하여 AI에게 전달하여 전체적인 그림을 명확하게 이해시킴.</li>
+                                    <li><strong>설계 오류 효과적 발견:</strong> 전체 아키텍처를 파악한 AI가 설계상의 에러와 잠재적 버그를 더 정확하게 식별.</li>
+                                    <li><strong>프로젝트 아키텍처 이해도 향상:</strong> 전체적인 코드 구조를 한눈에 파악하여 프로젝트의 설계 의도와 구조를 더 깊이 이해.</li>
                                 </ul>
                             </div>
                         </div>
@@ -424,45 +375,43 @@
                     </div>
                 </article>
 
+                <!-- Project 6: Private PDF -->
                 <article class="project-card bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-card flex flex-col h-full group">
                     <div class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer border-b border-slate-100">
-                         <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                            <span class="px-4 py-2 bg-white/90 backdrop-blur rounded-full text-sm font-bold text-slate-800 shadow-lg group-hover:opacity-0 transition-opacity duration-300 flex items-center gap-2">
-                                <i class="fas fa-play text-primary"></i> Hover to Play
-                            </span>
+                        <img class="gif-viewer" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHJkdTZkczF4N3M2d2k0MTk0YzdrMjVtOHAwNm92eWY3ZnIyNzM4dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8tuDBapQ7MfVp0Ygi0/giphy.gif" alt="Private PDF Preview">
+                        <div class="static-thumb">
+                            <i class="fas fa-file-shield text-6xl opacity-20 text-slate-400"></i>
                         </div>
-                        <div class="static-thumb absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-300 transition-opacity duration-300">
-                            <i class="fas fa-file-shield text-6xl opacity-20"></i>
-                        </div>
-                        <video muted loop playsinline class="gif-play absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500" onmouseover="this.play()" onmouseout="this.pause()">
-                            <source src="./media/ppdf-demo.mp4" type="video/mp4">
-                        </video>
                     </div>
                     <div class="p-8 flex flex-col flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <div>
-                                <h3 class="text-2xl font-bold text-slate-900">Private PDF</h3>
-                                <p class="text-sm text-slate-500 font-medium mt-1">서버리스 보안 마스킹 도구</p>
+                                <h3 class="text-2xl font-bold text-slate-900">PrivacyPDF</h3>
+                                <p class="text-sm text-slate-500 font-medium mt-1">서버로 전송되지 않는 PDF 보안 도구</p>
                             </div>
                             <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-full">Security</span>
                         </div>
                         <div class="flex-grow">
                             <div class="challenge-box">
                                 <strong class="text-amber-600 block mb-1"><i class="fas fa-exclamation-triangle"></i> Challenge</strong>
-                                <p class="text-slate-600">보안 문서 공유 시 포토샵의 번거로움과 단순 오버레이 방식의 텍스트 추출 취약점.</p>
+                                <p class="text-slate-600">민감한 정보를 가리기 위해 온라인 PDF 툴을 사용할 때 서버 업로드 방식으로 인한 데이터 유출 위험. 단순 오버레이 마스킹은 텍스트 추출이 가능해 보안에 취약함.</p>
                             </div>
                             <div class="solution-box">
                                 <strong class="text-primary block mb-1"><i class="fas fa-check-circle"></i> Solution</strong>
                                 <ul class="list-disc list-inside text-slate-600 space-y-1">
-                                    <li><strong>100% 클라이언트 사이드 처리</strong>로 데이터 유출 원천 차단.</li>
-                                    <li>마스킹 영역을 단순 가림이 아닌 <strong>이미지 래스터화(Rasterization)</strong> 처리하여 텍스트 추출 불가능하게 구현.</li>
+                                    <li><strong>100% 클라이언트 사이드 처리</strong>로 서버 전송 없이 브라우저 내에서 모든 작업 수행.</li>
+                                    <li><strong>이미지 래스터화(Flattening)</strong>로 마스킹된 페이지를 고해상도 이미지로 변환하여 복구 불가능하게 구현.</li>
+                                    <li><strong>워터마크 시스템</strong>으로 문서 유출 경로 추적 및 보안 등급 표시 기능 제공.</li>
+                                    <li><strong>데이터 주권 보장</strong>으로 사용자의 문서가 컴퓨터를 떠나지 않는 완벽한 프라이버시 보호.</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mt-6 mb-6">
+                            <span class="tech-badge bg-slate-100 text-slate-700">pdf-lib</span>
                             <span class="tech-badge bg-slate-100 text-slate-700">PDF.js</span>
                             <span class="tech-badge bg-slate-100 text-slate-700">Canvas API</span>
                             <span class="tech-badge bg-slate-100 text-slate-700">Client-Side</span>
+                            <span class="tech-badge bg-slate-100 text-slate-700">Image Rasterization</span>
                         </div>
                         <div class="flex gap-3 mt-auto pt-4 border-t border-slate-100">
                             <a href="https://ppdf.ponslink.online" target="_blank" class="flex-1 py-2.5 bg-primary text-white text-center rounded-lg font-bold text-sm hover:bg-blue-600 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
@@ -593,15 +542,7 @@
             }
         });
 
-        // Video Hover Play
-        document.querySelectorAll('.project-card').forEach(card => {
-            const video = card.querySelector('video');
-            if(video) {
-                video.muted = true;
-                card.addEventListener('mouseenter', () => video.play().catch(e => {}));
-                card.addEventListener('mouseleave', () => video.pause());
-            }
-        });
+        // No additional JavaScript needed - GIFs auto-play
     </script>
 </body>
 </html>
